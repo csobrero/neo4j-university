@@ -1,0 +1,7 @@
+---
+applications:
+- name: neo4j-university
+  memory: 512M
+  instances: 1
+  host: neo4j-university-yage
+  path: target/neo4j-university-0.0.1-SNAPSHOT.war
