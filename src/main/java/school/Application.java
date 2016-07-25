@@ -10,18 +10,41 @@
  */
 package school;
 
+import org.neo4j.ogm.config.Configuration;
+import org.neo4j.ogm.session.SessionFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.neo4j.NodeEntityScan;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.context.annotation.Bean;
+//import org.springframework.boot.neo4j.NodeEntityScan;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
 @EnableTransactionManagement
-@NodeEntityScan(basePackages = "school.domain")
+@EntityScan(basePackages = "school.domain")
 public class Application {
 
     public static void main(String[] args) {
         new SpringApplication(Application.class).run(args);
+    }
+    
+//    public static final String URL = System.getenv("NEO4J_URL") != null ? System.getenv("NEO4J_URL") : "http://localhost:7474";
+    
+    
+    @Bean
+    public Configuration getConfiguration() {
+       Configuration config = new Configuration();
+       config
+           .driverConfiguration()
+           .setDriverClassName("org.neo4j.ogm.drivers.http.driver.HttpDriver")
+           .setCredentials("test_prokarma","Gi6516ORGRAloCrCf5tq")
+           .setURI("http://testprokarma.sb10.stations.graphenedb.com:24789");
+       return config;
+    }
+    
+    @Bean
+    public SessionFactory getSessionFactory() {
+        return new SessionFactory("school.domain");
     }
 
 }
