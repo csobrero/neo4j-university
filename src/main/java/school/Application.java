@@ -49,14 +49,21 @@ public class Application {
     
     @Bean
     public Configuration getConfiguration() {
-       Configuration config = new Configuration();
-       config
-           .driverConfiguration()
-           .setCredentials("test_prokarma","Gi6516ORGRAloCrCf5tq")
-//           .setDriverClassName("org.neo4j.ogm.drivers.bolt.driver.BoltDriver")
+        Configuration config = new Configuration();
+        config.driverConfiguration()
+        .setDriverClassName("org.neo4j.ogm.drivers.bolt.driver.BoltDriver")
+        .setURI("bolt://test_prokarma:Gi6516ORGRAloCrCf5tq@sb10.stations.graphenedb.com:24786")
+        .setEncryptionLevel("NONE")
+        .setTrustStrategy("TRUST_ON_FIRST_USE")
+        .setTrustCertFile("/tmp/cert");
+//       Configuration config = new Configuration();
+//       config
+//           .driverConfiguration()
+//           .setCredentials("test_prokarma","Gi6516ORGRAloCrCf5tq")
+//           .setDriverClassName("school.MyBoltDriver");
 //           .setURI("bolt://sb10.stations.graphenedb.com:24786");
-       .setDriverClassName("org.neo4j.ogm.drivers.http.driver.HttpDriver")
-       .setURI("http://testprokarma.sb10.stations.graphenedb.com:24789");
+//       .setDriverClassName("org.neo4j.ogm.drivers.http.driver.HttpDriver")
+//       .setURI("http://testprokarma.sb10.stations.graphenedb.com:24789");
        return config;
     }
     
