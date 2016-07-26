@@ -30,15 +30,31 @@ public class Application {
     
 //    public static final String URL = System.getenv("NEO4J_URL") != null ? System.getenv("NEO4J_URL") : "http://localhost:7474";
     
+//    public class Neo4jSessionFactory {
+//
+//        private final static SessionFactory sessionFactory = new SessionFactory("school.domain");
+//        private static Neo4jSessionFactory factory = new Neo4jSessionFactory();
+//
+//        public static Neo4jSessionFactory getInstance() {
+//            return factory;
+//        }
+//
+//        private Neo4jSessionFactory() {
+//        }
+//
+//        public Session getNeo4jSession() {
+//            return sessionFactory.openSession();
+//        }
+//    }
     
     @Bean
     public Configuration getConfiguration() {
        Configuration config = new Configuration();
        config
            .driverConfiguration()
-           .setDriverClassName("org.neo4j.ogm.drivers.http.driver.HttpDriver")
-           .setCredentials("test_prokarma","Gi6516ORGRAloCrCf5tq")
-           .setURI("http://testprokarma.sb10.stations.graphenedb.com:24789");
+           .setDriverClassName("org.neo4j.ogm.drivers.bolt.driver.BoltDriver")
+           .setCredentials("neo4j","plokij")
+           .setURI("bolt://http://localhost:7687");
        return config;
     }
     
