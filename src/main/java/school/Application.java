@@ -53,8 +53,8 @@ public class Application {
        config
            .driverConfiguration()
            .setDriverClassName("org.neo4j.ogm.drivers.bolt.driver.BoltDriver")
-           .setCredentials("neo4j","plokij")
-           .setURI("bolt://http://localhost:7687");
+           .setCredentials("test_prokarma","Gi6516ORGRAloCrCf5tq")
+           .setURI("bolt://sb10.stations.graphenedb.com:24786");
        return config;
     }
     
