@@ -52,9 +52,11 @@ public class Application {
        Configuration config = new Configuration();
        config
            .driverConfiguration()
-           .setDriverClassName("org.neo4j.ogm.drivers.bolt.driver.BoltDriver")
            .setCredentials("test_prokarma","Gi6516ORGRAloCrCf5tq")
-           .setURI("bolt://sb10.stations.graphenedb.com:24786");
+//           .setDriverClassName("org.neo4j.ogm.drivers.bolt.driver.BoltDriver")
+//           .setURI("bolt://sb10.stations.graphenedb.com:24786");
+       .setDriverClassName("org.neo4j.ogm.drivers.http.driver.HttpDriver")
+       .setURI("http://testprokarma.sb10.stations.graphenedb.com:24789");
        return config;
     }
     
