@@ -51,25 +51,27 @@ public class Application {
     public Configuration getConfiguration() {
         Configuration config = new Configuration();
         config.driverConfiguration()
+//        .setDriverClassName("org.neo4j.ogm.drivers.embedded.driver.EmbeddedDriver")
+//        .setURI("file:///tmp/localneo4j");
         .setDriverClassName("org.neo4j.ogm.drivers.bolt.driver.BoltDriver")
-        .setURI("bolt://test_prokarma:Gi6516ORGRAloCrCf5tq@sb10.stations.graphenedb.com:24786")
-        .setEncryptionLevel("NONE")
-        .setTrustStrategy("TRUST_ON_FIRST_USE")
-        .setTrustCertFile("/tmp/cert");
+        .setURI("bolt://test_prokarma:Gi6516ORGRAloCrCf5tq@sb10.stations.graphenedb.com:24786");
+////        .setEncryptionLevel("NONE")
+//        .setTrustStrategy("TRUST_ON_FIRST_USE")
+//        .setTrustCertFile("file:///tmp/cert");
 //       Configuration config = new Configuration();
 //       config
 //           .driverConfiguration()
 //           .setCredentials("test_prokarma","Gi6516ORGRAloCrCf5tq")
-//           .setDriverClassName("school.MyBoltDriver");
-//           .setURI("bolt://sb10.stations.graphenedb.com:24786");
+////           .setDriverClassName("school.MyBoltDriver");
+////           .setURI("bolt://sb10.stations.graphenedb.com:24786");
 //       .setDriverClassName("org.neo4j.ogm.drivers.http.driver.HttpDriver")
 //       .setURI("http://testprokarma.sb10.stations.graphenedb.com:24789");
        return config;
     }
     
-    @Bean
-    public SessionFactory getSessionFactory() {
-        return new SessionFactory("school.domain");
-    }
+//    @Bean
+//    public SessionFactory getSessionFactory() {
+//        return new SessionFactory("school.domain");
+//    }
 
 }
