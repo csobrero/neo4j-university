@@ -1,77 +1,46 @@
-/*
- * Copyright [2011-2016] "Neo Technology"
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
- *
- */
 package school;
 
 import org.neo4j.ogm.config.Configuration;
 import org.neo4j.ogm.session.SessionFactory;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
-//import org.springframework.boot.neo4j.NodeEntityScan;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
 @EnableTransactionManagement
-@EntityScan(basePackages = "school.domain")
-public class Application {
+@EnableAutoConfiguration
+@ComponentScan
+public class Application extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
-        new SpringApplication(Application.class).run(args);
+        SpringApplication.run(Application.class, args);
     }
-    
-//    public static final String URL = System.getenv("NEO4J_URL") != null ? System.getenv("NEO4J_URL") : "http://localhost:7474";
-    
-//    public class Neo4jSessionFactory {
-//
-//        private final static SessionFactory sessionFactory = new SessionFactory("school.domain");
-//        private static Neo4jSessionFactory factory = new Neo4jSessionFactory();
-//
-//        public static Neo4jSessionFactory getInstance() {
-//            return factory;
-//        }
-//
-//        private Neo4jSessionFactory() {
-//        }
-//
-//        public Session getNeo4jSession() {
-//            return sessionFactory.openSession();
-//        }
-//    }
-    
+
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(Application.class);
+    }
+
     @Bean
     public Configuration getConfiguration() {
         Configuration config = new Configuration();
-        config.driverConfiguration()
-//        .setDriverClassName("org.neo4j.ogm.drivers.embedded.driver.EmbeddedDriver")
-//        .setURI("file:///tmp/localneo4j");
-        .setDriverClassName("org.neo4j.ogm.drivers.bolt.driver.BoltDriver")
-        .setURI("bolt://test_prokarma:Gi6516ORGRAloCrCf5tq@sb10.stations.graphenedb.com:24786");
-////        .setEncryptionLevel("NONE")
-//        .setTrustStrategy("TRUST_ON_FIRST_USE")
-//        .setTrustCertFile("file:///tmp/cert");
-//       Configuration config = new Configuration();
-//       config
-//           .driverConfiguration()
-//           .setCredentials("test_prokarma","Gi6516ORGRAloCrCf5tq")
-////           .setDriverClassName("school.MyBoltDriver");
-////           .setURI("bolt://sb10.stations.graphenedb.com:24786");
-//       .setDriverClassName("org.neo4j.ogm.drivers.http.driver.HttpDriver")
-//       .setURI("http://testprokarma.sb10.stations.graphenedb.com:24789");
-       return config;
+        config.driverConfiguration().setCredentials("test_prokarma", "Gi6516ORGRAloCrCf5tq")
+                .setDriverClassName("org.neo4j.ogm.drivers.http.driver.HttpDriver")
+                .setURI("http://testprokarma.sb10.stations.graphenedb.com:24789");
+        // .setDriverClassName("org.neo4j.ogm.drivers.bolt.driver.BoltDriver") //edit pom.xml for
+        // this driver
+        // .setURI("bolt://sb10.stations.graphenedb.com:24786");
+        return config;
     }
-    
-//    @Bean
-//    public SessionFactory getSessionFactory() {
-//        return new SessionFactory("school.domain");
-//    }
+
+    @Bean
+    public SessionFactory getSessionFactory() {
+        return new SessionFactory("school.domain");
+    }
 
 }

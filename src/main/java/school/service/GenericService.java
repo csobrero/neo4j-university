@@ -20,12 +20,12 @@ public abstract class GenericService<T> implements Service<T> {
 
     @Override
     public Iterable<T> findAll() {
-        return getRepository().findAll(DEPTH_LIST);
+        return getRepository().findAll();
     }
 
     @Override
     public T find(Long id) {
-        return getRepository().findOne(id, DEPTH_ENTITY);
+        return getRepository().findOne(id);
     }
 
     @Override
@@ -35,7 +35,7 @@ public abstract class GenericService<T> implements Service<T> {
 
     @Override
     public T createOrUpdate(T entity) {
-        getRepository().save(entity, DEPTH_ENTITY);
+        getRepository().save(entity);
         return find(((Entity) entity).getId());
     }
 

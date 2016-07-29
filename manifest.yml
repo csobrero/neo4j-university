@@ -3,5 +3,5 @@ applications:
 - name: neo4j-university
   memory: 512M
   instances: 1
-  host: neo4j-university-capii
+  host: neo4j-university-ashe
   path: target/neo4j-university-0.0.1-SNAPSHOT.war
