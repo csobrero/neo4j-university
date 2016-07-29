@@ -26,21 +26,21 @@ public class Application extends SpringBootServletInitializer {
         return application.sources(Application.class);
     }
 
-    @Bean
-    public Configuration getConfiguration() {
-        Configuration config = new Configuration();
-        config.driverConfiguration().setCredentials("test_prokarma", "Gi6516ORGRAloCrCf5tq")
-                .setDriverClassName("org.neo4j.ogm.drivers.http.driver.HttpDriver")
-                .setURI("http://testprokarma.sb10.stations.graphenedb.com:24789");
-        // .setDriverClassName("org.neo4j.ogm.drivers.bolt.driver.BoltDriver") //edit pom.xml for
-        // this driver
-        // .setURI("bolt://sb10.stations.graphenedb.com:24786");
-        return config;
-    }
-
-    @Bean
-    public SessionFactory getSessionFactory() {
-        return new SessionFactory("school.domain");
-    }
+//    @Bean
+//    public Configuration getConfiguration() {
+//        Configuration config = new Configuration();
+//        config.driverConfiguration().setCredentials("test_prokarma", "Gi6516ORGRAloCrCf5tq")
+//                .setDriverClassName("org.neo4j.ogm.drivers.http.driver.HttpDriver")
+//                .setURI("http://testprokarma.sb10.stations.graphenedb.com:24789");
+//        // .setDriverClassName("org.neo4j.ogm.drivers.bolt.driver.BoltDriver") //edit pom.xml for
+//        // this driver
+//        // .setURI("bolt://sb10.stations.graphenedb.com:24786");
+//        return config;
+//    }
+//
+//    @Bean
+//    public SessionFactory getSessionFactory() {
+//        return new SessionFactory("school.domain");
+//    }
 
 }
